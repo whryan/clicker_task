@@ -142,6 +142,7 @@ BELOW HERE ARE OTHER FUNCTIONS
 EVENTUALLY SHOULD BE MOVED INTO SEPERATE SCRIPTS
 
 =========================== */ 
+
 // Makes a new enemy come to the center of the screen
 function newChallenger(enemy_group){
   currentEnemy = enemy_group.getRandom(); //choose one enemy, move it to the center
@@ -194,6 +195,7 @@ function enemyKilled() {
 
 //Emit some gold coins
 function dropGold(goldCt){
+  console.log(goldCt);
   goldEmitter.x = game.world.centerX;
   goldEmitter.y = game.world.centerY;
   goldEmitter.start(true, 4000, null, goldCt);
@@ -226,3 +228,4 @@ function autoDmgClicked(){
     console.log('Too poor, failed purchase');
   }
 }
+
