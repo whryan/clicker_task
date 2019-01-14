@@ -145,7 +145,7 @@ function newEnemyGroup(groupData){
   // loop through enemy list and make enemies
   groupData.forEach(function(data) {
     //create the enemy
-    enemy = enemies.create(500, 400, data.image); //make them off screen
+    enemy = enemies.create(-100, -100, data.image); //make them off screen
     //give the enemy HP
     enemy.health = data.hp;
     enemy.maxHealth = data.hp;
