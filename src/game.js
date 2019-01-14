@@ -10,6 +10,7 @@ function preload() {
   game.load.image('blue-button-down', 'assets/ui/uipack/blue_button08.png');
   game.load.image('green-button-up', 'assets/ui/uipack/green_button07.png');
   game.load.image('green-button-down', 'assets/ui/uipack/green_button08.png');
+  game.load.image('coin', 'assets/items/coinGold.png');
 }
 
 //All labels 
@@ -23,6 +24,8 @@ var autoDmgText;
 var percentHP = 100;
 //current enemy variable
 var currentEnemy;
+var goldEmitter;
+var clickEmitter;
 var tick;
 
 // Define enemy data 
@@ -62,6 +65,13 @@ function create() {
   var clickDmgButton = game.add.button(16, 100, 'blue-button-up', clickDmgClicked, this);
   var autoDmgButton = game.add.button(16, 150, 'green-button-up', autoDmgClicked, this);
   
+  //create emitters for drops (eg coins, etc)
+  goldEmitter = game.add.emitter(game.world.centerX, game.world.centerY, 100);
+  goldEmitter.makeParticles('coin');
+  goldEmitter.gravity = 400; //how fast it falls
+  
+  //create emitter for clicks
+      
   //========================
   // Enemy creation
   //========================
@@ -169,6 +179,7 @@ function onEnemyClick(sprite, pointer){
 //Run if an enemy dies
 function enemyKilled() {
   player.gold = player.gold + currentEnemy.details.reward; //give gold
+  dropGold(currentEnemy.details.reward); //make a gold drop effect
   currentEnemy.destroy(); // kill enemy
   player.enemiesKilled++; //update kill count
   if(enemies.length>0){ //if there are more enemies in the group
@@ -179,6 +190,13 @@ function enemyKilled() {
     newEnemyGroup(enemyData); //make a new group of enemies
     newChallenger(enemies); //choose one as a challenger
   }
+}
+
+//Emit some gold coins
+function dropGold(goldCt){
+  goldEmitter.x = game.world.centerX;
+  goldEmitter.y = game.world.centerY;
+  goldEmitter.start(true, 4000, null, goldCt);
 }
 
 // Triggers whenever anything is clicked
