@@ -27,8 +27,8 @@ var tick;
 
 // Define enemy data 
 var enemyData = [
-  {name: 'Star Boi', image: 'star', hp: 10, reward: 2},
-  {name: 'Bad Boi', image: 'box', hp: 4, reward: 1}
+  {name: 'Star Person', image: 'star', hp: 10, reward: 2},
+  {name: 'Box Person', image: 'box', hp: 4, reward: 1}
 ]
 
 function create() {
